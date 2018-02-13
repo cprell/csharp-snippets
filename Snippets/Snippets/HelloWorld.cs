@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Snippets
 {
-    class Program
+    class HelloWorld
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Hello World");
+            Console.ReadLine();
         }
     }
 }
