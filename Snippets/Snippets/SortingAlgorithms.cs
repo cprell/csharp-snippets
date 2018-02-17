@@ -76,7 +76,7 @@ namespace Snippets
         {
             double elapsedTime;
             Stopwatch watch = new Stopwatch();
-            int[] data = new int[1000];
+            int[] data = new int[10000];
 
             Console.WriteLine("-- Bubble Sort --");
             GenerateArray(data, 1);
