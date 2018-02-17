@@ -53,7 +53,7 @@ namespace CPP17Challenge
 
                                 continue;
                             }
-                            else if (line.Contains(column))
+                            else if (!line.Contains(column))
                             {
                                 Console.WriteLine("Not a valid file");
                                 System.Environment.Exit(0);
