@@ -30,7 +30,7 @@ namespace Snippets
                 {
                     if (data[j] > data[j+1])
                     {
-                        SwapArray(data, j, j+1);
+                        SwapArray(data, j, j + 1);
                     }
                 }
             }
@@ -58,6 +58,63 @@ namespace Snippets
             // printArray(data);
         }
 
+        // for smaller fields
+
+        public static void InsertionSort(int[] data)
+        {
+            for (int i = 1; i < data.Length; i++)
+            {
+                for (int j = i; j > 0 && data[j] < data[j-1]; j--)
+                {
+                    SwapArray(data, j, j - 1);
+                }
+            }
+        }
+
+        public static void ShellSort(int[] data)
+        {
+            Console.WriteLine("Not yet implemented");
+        }
+
+        public static void QuickSort(int[] data)
+        {
+            IntArrayQuickSort(data, 0, data.Length - 1);
+        }
+
+        // TODO: Implement Quicksort by myself
+
+        public static void IntArrayQuickSort(int[] data, int l, int r)
+        {
+            int i, j;
+            int x;
+
+            i = l;
+            j = r;
+
+            x = data[(l + r) / 2]; /* find pivot item */
+            while (true)
+            {
+                while (data[i] < x)
+                    i++;
+                while (x < data[j])
+                    j--;
+                if (i <= j)
+                {
+                    SwapArray(data, i, j);
+                    i++;
+                    j--;
+                }
+                if (i > j)
+                    break;
+            }
+            if (l < j)
+                IntArrayQuickSort(data, l, j);
+            if (i < r)
+                IntArrayQuickSort(data, i, r);
+        }
+
+        // TODO: Mergesort
+
         public static void GenerateArray(int[] data, int seed)
         {
             Random r = new Random(seed);
@@ -72,7 +129,7 @@ namespace Snippets
         {
             double elapsedTime;
             Stopwatch watch = new Stopwatch();
-            int[] data = new int[10000];
+            int[] data = new int[100000];
 
             Console.WriteLine("-- Bubble Sort --");
             GenerateArray(data, 1);
@@ -88,6 +145,33 @@ namespace Snippets
             watch.Reset();
             watch.Start();
             SelectionSort(data);
+            watch.Stop();
+            elapsedTime = watch.ElapsedMilliseconds / 1000.0;
+            Console.WriteLine("Elapsed time: {0:F3}", elapsedTime);
+
+            Console.WriteLine("-- Insertion Sort --");
+            GenerateArray(data, 3);
+            watch.Reset();
+            watch.Start();
+            InsertionSort(data);
+            watch.Stop();
+            elapsedTime = watch.ElapsedMilliseconds / 1000.0;
+            Console.WriteLine("Elapsed time: {0:F3}", elapsedTime);
+
+            Console.WriteLine("-- Shell Sort --");
+            GenerateArray(data, 4);
+            watch.Reset();
+            watch.Start();
+            ShellSort(data);
+            watch.Stop();
+            elapsedTime = watch.ElapsedMilliseconds / 1000.0;
+            Console.WriteLine("Elapsed time: {0:F3}", elapsedTime);
+
+            Console.WriteLine("-- Quick Sort --");
+            GenerateArray(data, 5);
+            watch.Reset();
+            watch.Start();
+            QuickSort(data);
             watch.Stop();
             elapsedTime = watch.ElapsedMilliseconds / 1000.0;
             Console.WriteLine("Elapsed time: {0:F3}", elapsedTime);
